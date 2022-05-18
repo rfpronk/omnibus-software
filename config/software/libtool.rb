@@ -41,6 +41,9 @@ build do
 
   if aix?
     env["M4"] = "/opt/freeware/bin/m4"
+  elsif freebsd?
+    # We have to remove -rpath from LDFLAGS when building on FreeBSD
+    env["LDFLAGS"] = "-L/opt/omnibus-toolchain/embedded/lib"
   elsif solaris2?
     # We hit this bug on Solaris11 platforms bug#14291: libtool 2.4.2 fails to build due to macro_revision  reversion
     # The problem occurs with LANG=en_US.UTF-8 but not with LANG=C
