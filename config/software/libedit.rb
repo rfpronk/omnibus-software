@@ -58,6 +58,10 @@ build do
     # is non-standard.
     env["LC_ALL"] = "en_US"
   end
+  
+  if solaris2?
+    patch source: "solaris.patch", plevel: 1, env: env
+  end
 
   update_config_guess
 
