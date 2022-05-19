@@ -50,6 +50,9 @@ build do
     else
       patch source: "configure_xlc_visibility_2.4.7.patch", plevel: 1, env: env
     end
+  elsif freebsd?
+    # We have to remove -rpath from LDFLAGS when building on FreeBSD
+    env["LDFLAGS"] = "-L/opt/omnibus-toolchain/embedded/lib"
   end
 
   command "./configure" \
