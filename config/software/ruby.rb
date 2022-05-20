@@ -89,6 +89,8 @@ elsif freebsd?
   #   http://mailing.freebsd.ports-bugs.narkive.com/kCgK8sNQ/ports-183106-patch-sysutils-libcdio-does-not-build-on-10-0-and-head
   #
   env["LDFLAGS"] << " -ltinfow"
+
+  env["LDFLAGS"] << " -Wl,-rpath,#{install_dir}/embedded/lib"
 elsif aix?
   # this magic per IBM
   env["LDSHARED"] = "xlc -G"

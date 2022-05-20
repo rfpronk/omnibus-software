@@ -62,6 +62,8 @@ build do
 
   if s390x?
     configure_args << "--disable-xattr --disable-acl"
+  elsif freebsd?
+    env["LDFLAGS"] += " -Wl,-rpath,#{install_dir}/embedded/lib"
   end
 
   configure configure_args.join(" "), env: env
